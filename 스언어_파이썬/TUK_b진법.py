@@ -9,18 +9,21 @@ def toDec(b, N, lst):
     return result
 
 def decToB(b, num):
-    lst = [0]
+    lst = ""
     count = 0
-    while num:
-        lst.insert(1, (num%4))
-        num = num/b
+    while num > 0:
+        lst = str(num%b) + " " + lst
+        num = num//b
         count += 1
-    return lst
+    return count, lst
             
 
 b, N, M = map(int, input().split())
 lst1 = list(map(int, input().split()))
 lst2 = list(map(int, input().split()))
 
-print(toDec(b, N, lst1) * toDec(b, M, lst2))
-#print(decToB(b, toDec(b, N, lst1)+toDec(b, M, lst2)))
+# print(toDec(b, N, lst1) * toDec(b, M, lst2))
+
+count, result = decToB(b, (toDec(b, N, lst1) * toDec(b, M, lst2)))
+print(count)
+print(result)
