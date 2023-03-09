@@ -1,37 +1,50 @@
 //-----------------------------------------------------------------------------
-// 2023 1학기 STL 3월 7일 화910                화 910 목78               (1주 2일)
+// 2023 1학기 STL 3월 7일 목78                화 910 목78               (2주 1일)
 //-----------------------------------------------------------------------------
-// C++ template 복습
+// 많은 수의 자료 다루기 - int
 //-----------------------------------------------------------------------------
-// C++의 패러다임 (C++이 뭔데!)
-// 1. procedual PL(C)
-// 2. object oriented PL(programming Language) (C++) >> 객체 간의 관계가 중요함. (상속, 친구 등등...) >> OOP
-// ** 3. generic PL <OOP와 반대임...?> (C++) 자료형과 무관함!!! >>(템플릿으로 구성된...) 함수(알고리즘), 클래스(자료구조) <<< 독보적임.
-// 4. template meta PL >> 프로그램을 생성하는 프로그램. <<< 독보적임. meta는 신급임.
-// 5. Functional PL
+// 코딩 컨벤션 >> 코딩 규칙이 있음.
 //-----------------------------------------------------------------------------
+
 #include <iostream>
+#include <fstream>
+#include <format>
+#include <array>
 #include <algorithm>
 #include "save.h"
 using namespace std; //권장하지 않음.
 
-//[문제] 의도대로 실행되도록 코딩하라. main() 안의 내용은 변경 금지
-// change 함수를 한 번만 코딩해서 할 수 있나?
-
-// 템플릿 함수는 선언과 정의를 따로 하지 않고 한 번에 함. <<선언과 동시에 정의!!>>
-// 소스 코드를 컴파일러가 언제나 알 수 있도록 정의를 열어둬야 함. (먼저 정의해야 함.)
-// **요약: 템플릿의 선언과 정의는 한 번에! - 템플릿 소스는 컴파일러가 언제나 알고 있어야 하기 때문.
-template <class T>
-void change(T& a, T& b) {
-	T temp{ a };							//special 함수 (복사 생성자, 생성자, 소멸자, 이퀄... 그다음이 먼데)
-	a = b;									//special 함수 a.operator=(b);와 같은 문장.
-	b = temp;
-}
-
+array<int, 10>ga{12};
+array<int, 10>gga{};
+// 초기화 한 전역 변수와 초기화하지 않은 전역 변수는 완전히 다름.
+// 저장 위치부터 다름.
+int gn;
+// 전역 변수니까 스택 메모리에 위치 Xx
+// data 영역에 있음.
 //-------------
-int main() {
-	//-------------
+int main() 
+//-------------
+{
+	array<int, 10> a;
+	int n;
+	int* p = new int;
+
+
+	cout << "스택에 있는 a[0] -    " << addressof(a[0]) << endl;
+	cout << "스택에 있는 n -       " << addressof(n) << endl;
+	cout << endl;
+	cout << "free store에 있는 p - " << p << endl;
+	cout << endl;
+	cout << "data에 있는 ga -      " << addressof(ga[0]) << endl;
+	cout << "data에 있는 gn -      " << addressof(gn) << endl;
+	cout << endl;
+	cout << "코드에 있는 main -    " << addressof(main) << endl;
+	cout << "코드에 있는 save -    " << addressof(save) << endl;
 
 	save("소스.cpp");
 }
 
+// array<int, 1000> a;
+// ㄴ 스택에 생김. 지역 변수니까!
+// 
+//
